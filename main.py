@@ -21,6 +21,14 @@ class Post(BaseModel):
     content: str
     author: str
 
+# get all users
+@app.get("/users")
+def get_users():
+    if not len(users_db) > 0:
+        raise HTTPException(
+            status_code=400, detail="No any users Registered")
+    return users_db
+    
 
 # User Registration
 @app.post("/auth/register", response_model=User)
